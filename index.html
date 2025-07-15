@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Municipale IDA RP</title>
+    <style>
+        :root {
+            --police-blue: #0a2463;
+            --police-light-blue: #3e92cc;
+            --police-white: #fffaff;
+            --police-gold: #d4af37;
+            --police-dark: #1e1b18;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--police-white);
+            color: var(--police-dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--police-blue);
+            color: var(--police-white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--police-white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--police-gold);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--police-gold);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(to bottom, rgba(10, 36, 99, 0.7), rgba(10, 36, 99, 0.7)),
+                url('https://cdn.paris.fr/paris/2024/10/17/huge-ef58bf1d6a88f00f10e8026500dba3e6.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--police-white);
+            padding: 0 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--police-gold);
+            color: var(--police-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            background-color: #e6c247;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background-color: var(--police-white);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--police-blue);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--police-gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--police-blue);
+        }
+        
+        .about-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-card i {
+            font-size: 2.5rem;
+            color: var(--police-blue);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        /* Recruitment Section */
+        .recruitment {
+            padding: 6rem 2rem;
+            background-color: var(--police-blue);
+            color: var(--police-white);
+        }
+        
+        .recruitment .section-title {
+            color: var(--police-white);
+        }
+        
+        .recruitment-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .step-number {
+            background-color: var(--police-gold);
+            color: var(--police-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 6rem 2rem;
+            background-color: var(--police-white);
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .member:hover {
+            transform: scale(1.05);
+            will-change: transform;
+        }
+        
+        .member-image {
+            height: 650px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--police-blue);
+        }
+        
+        .member-info p {
+            color: var(--police-dark);
+            font-style: italic;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: var(--police-blue);
+            color: var(--police-white);
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--police-blue);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--police-dark);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--police-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--police-light-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--police-dark);
+            color: var(--police-white);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--police-white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--police-light-blue);
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            background-color: var(--police-blue);
+            color: var(--police-white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--police-light-blue);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="Police-Municipale-IDA-RP/Logo_Police_Municipale.png" alt="Logo officiel de la Police Municipale française" />
+                <h1>Police Municipale de IDA RP</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#recruitment">Recrutement</a></li>
+                    <li><a href="#team">Notre équipe</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>Police Municipale IDA RP</h2>
+        <p>Au service de la sécurité de votre rôleplay</p>
+        <a href="https://docs.google.com/forms/d/1z0GNWFg2oOboqlbzor9flTt48UCRpkvRNiLmyLLgnHs/edit" class="btn">Postuler maintenant</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">À propos de la Police Municipale</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <i>🔹</i>
+                <h3>Notre Mission</h3>
+                <p>La Police Municipale a pour mission d'assurer le bon ordre, la sûreté, la sécurité et la salubrité publiques sur le territoire de la commune.</p>
+                <p>Nos agents travaillent en étroite collaboration avec la Police Nationale et la Gendarmerie pour garantir la sécurité de tous.</p>
+            </div>
+            <div class="about-card">
+                <i>🔹</i>
+                <h3>Nos Compétences</h3>
+                <p>La Police Municipale intervient dans de nombreux domaines : surveillance générale, prévention, sécurité routière, verbalisation, assistance aux habitants...</p>
+                <p>Ses agents sont assermentés et ont des pouvoirs de police administrative et judiciaire limités à leur territoire communal.</p>
+            </div>
+            <div class="about-card">
+                <i>🔹</i>
+                <h3>Nos Valeurs</h3>
+                <p>Professionnalisme, engagement, proximité et respect sont les valeurs fondamentales qui guident nos actions au quotidien.</p>
+                <p>Nous sommes fiers de représenter l'autorité locale tout en maintenant un lien fort avec la population.</p>
+            </div>
+            <div class="about-card">
+                <i>🔹</i>
+                <h3>Notre Discord</h3>
+                <p>IDA RP est un serveur communautaire lié au Rôleplay sur ROBLOX, accueillant, sécurisé et respectueux, il saura vous plaire ou même vous faire découvrir de nouvelles choses.</p>
+                <a href="//discord.gg/6JpqHEceYy" class="btn">IDA RP sur Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruitment Section -->
+    <section class="recruitment" id="recruitment">
+        <h2 class="section-title">Processus de Recrutement</h2>
+        <div class="recruitment-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Dépôt de Candidature</h3>
+                <p>Remplissez le formulaire de candidature en ligne en cliquant sur le bouton "Postuler" ci-dessus</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Examen du Dossier</h3>
+                <p>Notre service RH examine votre dossier sous 2-3 semaines. Si votre profil correspond à nos besoins, vous êtes convoqué pour des tests.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Tests & Entretien</h3>
+                <p>Passage de tests oraux, physiques et de tir. Entretien avec un formateur agrée.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Formation</h3>
+                <p>Après réussite aux tests, vous passerez une à deux semaines en Gardien Brigadier Adjoint puis vous monterez les échelons au fur et à mesure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <h2 class="section-title">Notre Équipe</h2>
+        <div class="team-members">
+            <div class="member">
+                <div class="member-image">
+                    <img src="Police-Municipale-IDA-RP/FrankUnderwood.png" alt="Directeur Principal de la Police Municipale | Manager de IDA RP" />
+                </div>
+                <div class="member-info">
+                    <h3>Frank Underwood</h3>
+                    <h2>Directeur Principal de la Police Municipale</h2>
+                    <h3>Président Syndical de la Police</h3>
+                    <h3>Manager de IDA RP</h3>
+                </div>
+            </div>
+            <div class="member">
+                <div class="member-image">
+                    <img src="Police-Municipale-IDA-RP/OursGamer79.png" alt="Directeur Adjoint de la Police Municipale | Conseiller Syndical de la Police Nationale | Assistant Manager de IDA RP" />
+                </div>
+                <div class="member-info">
+                    <h3>OursGamers79</h3>
+                    <h2>Directeur Adjoint de la Police Municipale</h2>
+                    <h3>Conseiller Syndical de la Police</h3>
+                    <h3>Assistant Manager de IDA RP</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Nous Contacter</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Coordonnées</h3>
+                <p>
+                    <span aria-hidden="true">📍</span> Ville de IDA RP, "Somewhere over the Rainbow"
+                </p>
+                <p>
+                    <span>📞</span>01 23 45 67 89 (N'appelez pas.)
+                </p>
+                <p>
+                    <span>✉️</span>police.municipale@mairie.fr (N'E-mail-ez pas non plus.)
+                </p>
+                <p>
+                    <span>🕒</span>Lundi au Vendredi: 8h - 18h (ça dépend...)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <img src="Police_Municipale_IDA/Logo_Police_Municipale.png" alt="Logo simplifié de la Police Municipale - Bouclier bleu" />
+                <h2>Police Municipale</h2>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><span aria-hidden="true">Facebook</span></a>
+                <a href="#" aria-label="Twitter"><span aria-hidden="true">X</span></a>
+                <a href="#" aria-label="Instagram"><span aria-hidden="true">Instagram</span></a>
+                <a href="#" aria-label="LinkedIn"><span aria-hidden="true">LinkedIn</span></a>
+            </div>
+            <a href="#home" class="back-to-top">Retour en haut</a>
+            <p class="copyright">© 2025 Police Municipale de IDA RP. Tous droits réservés, copie illégale, poursuites judiciaires possibles.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Sticky header
+        const header = document.querySelector('header');
+        const heroSection = document.querySelector('.hero');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > heroSection.offsetHeight - 100) {
+                header.style.backgroundColor = 'var(--police-blue)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.backgroundColor = 'var(--police-blue)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission
+        const form = document.querySelector('.contact-form form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous contacterons sous peu.');
+            form.reset();
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.about-card, .step, .member');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial styles for animation
+        document.querySelectorAll('.about-card, .step, .member').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
+```
